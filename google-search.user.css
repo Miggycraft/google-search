@@ -439,23 +439,30 @@
        Search Header
        ========================================================================== */
 
-    /* Search Box Container */
     .RNNXgb {
-        background: var(--dracula-current-line) !important;
-        border: 2px solid var(--dracula-comment) !important;
+        background: rgba(68, 71, 90, 0.75) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+
+        border: 1px solid rgba(189, 147, 249, 0.35) !important;
         border-radius: 24px !important;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+
+        box-shadow:
+            0 8px 24px rgba(0, 0, 0, 0.25),
+            0 0 0 1px rgba(255,255,255,0.03) inset !important;
     }
 
-    .RNNXgb:hover {
-        box-shadow: 0 4px 12px rgba(189, 147, 249, 0.4) !important;
+    /* Active/open search */
+    .RNNXgb:hover,
+    .RNNXgb:focus-within {
+        background: rgba(68, 71, 90, 0.88) !important;
         border-color: var(--dracula-purple) !important;
     }
 
+    /* Connect search box with suggestions */
     .RNNXgb:focus-within {
-        box-shadow: 0 6px 16px rgba(189, 147, 249, 0.5) !important;
-        border-color: var(--dracula-pink) !important;
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
     }
 
     /* Search Input */
