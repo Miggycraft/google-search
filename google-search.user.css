@@ -1043,6 +1043,7 @@
     .LJQfbb {
         background-color: var(--dracula-background) !important;
     }
+    
 
     /* Card background */
     .YXe3R {
@@ -1312,5 +1313,22 @@
     .zqrO0 .niO4u:hover {
         border-color: var(--dracula-comment) !important;
         box-shadow: 0 2px 8px rgba(189, 147, 249, 0.3) !important;
+    }
+    
+    /* ==========================================================================
+       Section: Custom add ko
+    ========================================================================== */
+
+    /*   Removes ai preview background  */
+    .RDmXvc, .Zze5V{
+        background-image: linear-gradient(transparent 0px, #282a36 52px, #282a36 80px);
+    }
+    
+    .zNsLfb, .VHFyob .CvDJxb{
+        background-color: #282a36
+    }
+    
+    .b0Zsmc{
+        background-image: linear-gradient(transparent 0%, #282a36 100%);
     }
 }
