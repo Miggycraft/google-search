@@ -621,6 +621,29 @@
             var(--dracula-background) 100%
         ) !important;
     }
+    
+    /*   AI card   */
+    .rG9tvd, .HWMcu{
+        background-color: var(--dracula-current-line) !important;
+    }
+    
+    /*  AI card button (show more)    */
+    .BjvG9b{
+        background: var(--dracula-purple) !important;
+        border-radius: 28px !important;
+    }
+       
+    /*   AI Search Query   */
+    .iKaRFc{
+        background: var(--dracula-current-line) !important;
+        border-radius: 28px !important;
+    }
+    
+    /*  AI button search    */
+    .wPoHPd .OEueve.OEueve {
+        background: var(--dracula-purple);
+        border-radius: 28px !important;
+    }
 
     /* ==========================================================================  
     Section: Header / Search Tabs Bar Fixes
@@ -1076,7 +1099,7 @@
        ========================================================================== */
 
     /* Container background */
-    .LJQfbb {
+    .kuydt {
         background-color: var(--dracula-background) !important;
     }
     
