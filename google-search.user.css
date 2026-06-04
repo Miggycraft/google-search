@@ -272,6 +272,7 @@
         background-color: #44475a !important;
         color: #ff79c6 !important;
     }
+    
 
     /* Image search button */
     .image-search {
@@ -466,15 +467,24 @@
 
     /* Search Button and Icons */
     .Tg7LZd,
-    .z1asCe {
+    .z1asCe,
+    .y6gy3
+    {
         color: var(--dracula-purple) !important;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
 
     .Tg7LZd:hover,
-    .z1asCe:hover {
+    .z1asCe:hover,
+    .y6gy3:hover {
         color: var(--dracula-pink) !important;
     }
+    
+    /* Search icon (make it white) */
+    .x6vvNd {
+        fill: var(--dracula-foreground) !important;
+    }
+
 
     /* ==========================================================================
        Search Results
@@ -546,6 +556,30 @@
         margin: 0 16px 16px 0 !important;
         padding: 0 16px 16px 0 !important;
     }
+    
+    /* ==========================================================================
+   Section: Ticket Button (See tickets)
+   ========================================================================== */
+
+    /* Button background */
+    .ygsxke {
+        background: var(--dracula-purple) !important;
+    }
+
+    /* Force text color (fix pink hover issue) */
+    a.ZpEhbb.ygsxke {
+        color: var(--dracula-foreground) !important; 
+    }
+
+    a.ZpEhbb.ygsxke:hover {
+        color: var(--dracula-foreground) !important; 
+    }
+
+    /* Ticket icon */
+    .o3cCx.NMm5M {
+        color: var(--dracula-foreground) !important;
+    }
+
 
     /* Knowledge Panel Container */
     #rhs {
@@ -643,6 +677,16 @@
     .wPoHPd .OEueve.OEueve {
         background: var(--dracula-purple);
         border-radius: 28px !important;
+    }
+    
+    /* Highlighted suggestion (keyboard or hover) */
+    .sbhl {
+        background: #4b4f68 !important; /* good choice */
+    }
+
+    /* AI suggestion buttons */
+    .sbct.PZPZlf.yMAEcf {
+        background: var(--dracula-purple) !important;
     }
 
     /* ==========================================================================  
@@ -1372,5 +1416,9 @@
     .zqrO0 .niO4u:hover {
         border-color: var(--dracula-comment) !important;
         box-shadow: 0 2px 8px rgba(189, 147, 249, 0.3) !important;
+    }
+    
+    .ygsxke{
+        background: var(--dracula-purple) !important;
     }
 }
