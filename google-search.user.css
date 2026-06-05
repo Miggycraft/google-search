@@ -663,6 +663,10 @@
         ) !important;
     }
     
+    .xrOenc {
+        background-color: var(--dracula-selection) !important;
+    }
+    
     /*   AI card   */
     .rG9tvd, .HWMcu{
         background-color: var(--dracula-current-line) !important;
@@ -688,7 +692,7 @@
     
     /* Highlighted suggestion (keyboard or hover) */
     .sbhl {
-        background: #4b4f68 !important; /* good choice */
+        background: #4b4f68 !important;
     }
 
     /* AI suggestion buttons */
@@ -1182,7 +1186,7 @@
     }
 
     /* Card background - reusing the same style for consistency */
-    .YXe3R {
+    .YXe3R{
         background-color: var(--dracula-current-line) !important;
     }
 
@@ -1427,5 +1431,19 @@
     
     .ygsxke{
         background: var(--dracula-purple) !important;
+    }
+    
+    /* ==========================================================================
+   Section: ???? (idk where to put them lol)
+   ========================================================================== */
+    
+    /* google search song suggestion */
+    .AB2Fdd.o6OF0.DJbVFb{
+     background: #4b4f68 !important;   
+    }
+    
+    /* artist/released/album card */
+    .b3puKe{
+        background: var(--dracula-selection) !important;
     }
 }
