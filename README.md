@@ -18,9 +18,9 @@ enjoy! 😆
 
 This theme is maintained by the following person(s) and a bunch of [awesome contributors](https://github.com/dracula/google-search/graphs/contributors).
 
-| ![DokaDev](https://github.com/dokadev.png?size=100) |
-| --------------------------------------------------- |
-| [DokaDev](https://github.com/dokadev)               |
+| ![DokaDev](https://github.com/dokadev.png?size=100) | ![Miggycraft](https://github.com/miggycraft.png?size=100) |
+| --------------------------------------------------- | --------------------------------------------------------- |
+| [DokaDev](https://github.com/dokadev)               | [Miggycraft](https://github.com/miggycraft)               |
 
 ## Community
 
