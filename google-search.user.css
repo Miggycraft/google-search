@@ -14,10 +14,29 @@
 @-moz-document regexp("https?://www\\.google(\\.com?)?(\\.[a-z][a-z])?/(|\\?gws_rd.*|\\?gfe_rd.*|webhp\\?.*)") {
     /* Base styles and variables */
     :root {
-        /* Custom Link Colors */
-        --dracula-link: #8da8fb;
-        --dracula-link-visited: #697ec0;
-        --dracula-link-hover: #ff79c6; /* Using existing pink for hover */
+        /* Dracula Color Palette */
+        --dracula-background: #282a36;
+        --dracula-current-line: #44475a;
+        --dracula-selection: #44475a;
+        --dracula-foreground: #f8f8f2;
+        --dracula-comment: #6272a4;
+        --dracula-cyan: #8be9fd;
+        --dracula-green: #50fa7b;
+        --dracula-orange: #ffb86c;
+        --dracula-pink: #ff79c6;
+        --dracula-purple: #bd93f9;
+        --dracula-red: #ff5555;
+        --dracula-yellow: #f1fa8c;
+
+        /* Custom Theme Variables */
+        --background-secondary: #21222c;
+        --text-muted: #999999;
+        --shadow-color: rgba(0, 0, 0, 0.2);
+        --overlay-color: rgba(40, 42, 54, 0.8);
+        --link-color: var(--dracula-link, #8da8fb);
+        --link-visited: var(--dracula-link-visited, #697ec0);
+        --link-hover: var(--dracula-link-hover, #ff79c6);
+
     }
     
     body {
@@ -40,6 +59,17 @@
     .nDcEnd {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
+    
+    /* Google Search suggestions in main site*/
+    .aajZCb {
+        background: var(--dracula-selection) !important;
+    }
+    
+    /* Highlighted suggestion (keyboard or hover) */
+    .sbhl {
+        background: #4b4f68 !important;
+    }
+    
 
     /* Search box container with enhanced animations */
     .RNNXgb {
@@ -665,13 +695,6 @@
     
     .xrOenc {
         background-color: var(--dracula-selection) !important;
-    }
-
-    /* AI card suggestion */
-    .ytGmGe.ULBRwc{
-        background: var(--dracula-selection) !important;
-        border-radius: 16px !important;
-        border: 1px solid #6272a4 !important;
     }
     
     /*   AI card   */
@@ -1452,5 +1475,12 @@
     /* artist/released/album card */
     .b3puKe{
         background: var(--dracula-selection) !important;
+    }
+    
+    /* ai card suggestion */
+    .ytGmGe.ULBRwc{
+        background: var(--dracula-selection) !important;
+        border-radius: 16px !important;
+        border: 1px solid #6272a4 !important;
     }
 }
