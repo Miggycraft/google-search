@@ -86,7 +86,6 @@
     .RNNXgb {
         background: var(--dr-line) !important;
         border: 2px solid var(--dr-comment) !important;
-        border-radius: 24px !important;
         box-shadow: 0 2px 8px var(--shadow) !important;
     }
 
@@ -282,7 +281,6 @@
         backdrop-filter: blur(12px) !important;
         -webkit-backdrop-filter: blur(12px) !important;
         border: 1px solid rgba(189, 147, 249, 0.35) !important;
-        border-radius: 24px !important;
         box-shadow: 0 8px 24px var(--shadow),
                     0 0 0 1px rgba(255,255,255,0.03) inset !important;
     }
@@ -291,12 +289,6 @@
     .RNNXgb:focus-within {
         background: rgba(68, 71, 90, 0.92) !important;
         border-color: var(--dr-purple) !important;
-    }
-
-    /* Connect box to dropdown */
-    .RNNXgb:focus-within {
-        border-bottom-left-radius: 0 !important;
-        border-bottom-right-radius: 0 !important;
     }
 
     .gLFyf {
@@ -729,7 +721,6 @@
 
     /* ── Responsive ───────────────────────────────────────── */
     @media (max-width: 768px) {
-        .RNNXgb     { border-radius: 16px; }
         .kp-wholepage { border-radius: 0; }
     }
 }
