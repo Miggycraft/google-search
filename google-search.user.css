@@ -666,6 +666,13 @@
     .xrOenc {
         background-color: var(--dracula-selection) !important;
     }
+
+    /* AI card suggestion */
+    .ytGmGe.ULBRwc{
+        background: var(--dracula-selection) !important;
+        border-radius: 16px !important;
+        border: 1px solid #6272a4 !important;
+    }
     
     /*   AI card   */
     .rG9tvd, .HWMcu{
