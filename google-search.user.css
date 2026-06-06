@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Dracula Theme for Google Search
 @namespace      github.com/dracula
-@version        2.1.0
+@version        3.0.0
 @description    Official Dracula theme for Google Search (Stylus-compatible)
 @author         Dracula
 @license        MIT
@@ -10,103 +10,118 @@
 @preprocessor   stylus
 ==/UserStyle== */
 
-/* Google Main Page */
+/* =============================================================================
+   SHARED VARIABLES
+   Declared once here; both @-moz-document blocks inherit these values.
+   ============================================================================= */
+
+:root {
+    /* — Dracula palette — */
+    --dr-bg:           #282a36;
+    --dr-bg2:          #21222c;
+    --dr-line:         #44475a;
+    --dr-selection:    #44475a;
+    --dr-fg:           #f8f8f2;
+    --dr-comment:      #6272a4;
+    --dr-cyan:         #8be9fd;
+    --dr-green:        #50fa7b;
+    --dr-orange:       #ffb86c;
+    --dr-pink:         #ff79c6;
+    --dr-purple:       #bd93f9;
+    --dr-red:          #ff5555;
+    --dr-yellow:       #f1fa8c;
+
+    /* — Semantic tokens — */
+    --link:            #8da8fb;
+    --link-visited:    #697ec0;
+    --link-hover:      #ff79c6;
+    --shadow:          rgba(0, 0, 0, 0.25);
+    --overlay:         rgba(40, 42, 54, 0.85);
+    --highlight:       #4b4f68;
+
+    /* — Transitions — */
+    --ease-standard:   cubic-bezier(0.4, 0, 0.2, 1);
+    --t-fast:          0.2s var(--ease-standard);
+    --t-med:           0.3s var(--ease-standard);
+}
+
+/* =============================================================================
+   GOOGLE MAIN PAGE  (homepage / new-tab)
+   ============================================================================= */
 @-moz-document regexp("https?://www\\.google(\\.com?)?(\\.[a-z][a-z])?/(|\\?gws_rd.*|\\?gfe_rd.*|webhp\\?.*)") {
-    /* Base styles and variables */
-    :root {
-        /* Dracula Color Palette */
-        --dracula-background: #282a36;
-        --dracula-current-line: #44475a;
-        --dracula-selection: #44475a;
-        --dracula-foreground: #f8f8f2;
-        --dracula-comment: #6272a4;
-        --dracula-cyan: #8be9fd;
-        --dracula-green: #50fa7b;
-        --dracula-orange: #ffb86c;
-        --dracula-pink: #ff79c6;
-        --dracula-purple: #bd93f9;
-        --dracula-red: #ff5555;
-        --dracula-yellow: #f1fa8c;
 
-        /* Custom Theme Variables */
-        --background-secondary: #21222c;
-        --text-muted: #999999;
-        --shadow-color: rgba(0, 0, 0, 0.2);
-        --overlay-color: rgba(40, 42, 54, 0.8);
-        --link-color: var(--dracula-link, #8da8fb);
-        --link-visited: var(--dracula-link-visited, #697ec0);
-        --link-hover: var(--dracula-link-hover, #ff79c6);
-
-    }
-    
+    /* ── Base ─────────────────────────────────────────────── */
     body {
-        background-color: #282a36;
-        color: #f8f8f2;
+        background-color: var(--dr-bg) !important;
+        color: var(--dr-fg) !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    }
-    a.gb_W {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+                     "Helvetica Neue", sans-serif !important;
     }
 
-    /* Global transition for all interactive elements */
-    a,
-    button,
-    input,
-    .RNNXgb,
-    .XDyW0e,
-    .nDcEnd {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    /* ── Global interactive transitions ──────────────────── */
+    a, button, input, .RNNXgb, .XDyW0e, .nDcEnd {
+        transition: all var(--t-med) !important;
     }
-    
-    /* Google Search suggestions in main site*/
-    .aajZCb {
-        background: var(--dracula-selection) !important;
-    }
-    
-    /* Highlighted suggestion (keyboard or hover) */
-    .sbhl {
-        background: #4b4f68 !important;
-    }
-    
 
-    /* Search box container with enhanced animations */
+    /* ── Navigation bars ──────────────────────────────────── */
+    div[class*="gb_"],
+    div[class*="c93Gbe"] {
+        background-color: var(--dr-bg) !important;
+    }
+
+    div[class*="gb_"] a,
+    div[class*="c93Gbe"] a {
+        color: var(--dr-comment) !important;
+        opacity: 0.85;
+        transition: color var(--t-fast), opacity var(--t-fast) !important;
+    }
+
+    div[class*="gb_"] a:hover,
+    div[class*="c93Gbe"] a:hover {
+        color: var(--dr-cyan) !important;
+        opacity: 1;
+    }
+
+    /* ── Search box ───────────────────────────────────────── */
     .RNNXgb {
-        background: #44475a !important;
-        border: 2px solid #6272a4 !important;
+        background: var(--dr-line) !important;
+        border: 2px solid var(--dr-comment) !important;
         border-radius: 24px !important;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+        box-shadow: 0 2px 8px var(--shadow) !important;
     }
 
     .RNNXgb:hover {
-        box-shadow: 0 4px 12px rgba(189, 147, 249, 0.4) !important;
-        border-color: #bd93f9 !important;
+        border-color: var(--dr-purple) !important;
+        box-shadow: 0 4px 16px rgba(189, 147, 249, 0.35) !important;
     }
 
     .RNNXgb:focus-within {
-        box-shadow: 0 6px 16px rgba(189, 147, 249, 0.5) !important;
-        border-color: #ff79c6 !important;
+        border-color: var(--dr-pink) !important;
+        box-shadow: 0 6px 20px rgba(255, 121, 198, 0.4) !important;
     }
 
-    /* Search buttons with enhanced effects */
+    input.gLFyf {
+        background: transparent !important;
+        color: var(--dr-fg) !important;
+        border: none !important;
+    }
+
+    /* ── Search buttons ───────────────────────────────────── */
     input.gNO89b,
     input.RNmpXc {
-        background-color: #44475a !important;
-        color: #f8f8f2 !important;
-        border: 1px solid #6272a4 !important;
+        background-color: var(--dr-line) !important;
+        color: var(--dr-fg) !important;
+        border: 1px solid var(--dr-comment) !important;
         border-radius: 4px !important;
         margin: 11px 4px !important;
         padding: 0 16px !important;
         height: 36px !important;
-        position: relative !important;
-        overflow: hidden !important;
     }
 
     input.gNO89b:hover,
     input.RNmpXc:hover {
-        background-color: #6272a4 !important;
-        border-color: #bd93f9 !important;
+        background-color: var(--dr-comment) !important;
+        border-color: var(--dr-purple) !important;
         box-shadow: 0 4px 12px rgba(189, 147, 249, 0.3) !important;
     }
 
@@ -115,1372 +130,606 @@
         transform: translateY(1px) !important;
     }
 
-    /* Voice and Lens search icons with rotate effect */
-    .XDyW0e,
-    .nDcEnd {
-        color: #bd93f9 !important;
-        transform: rotate(0deg) scale(1) !important;
+    /* ── Voice / Lens icons ───────────────────────────────── */
+    .XDyW0e, .nDcEnd {
+        color: var(--dr-purple) !important;
     }
 
-    .XDyW0e:hover,
-    .nDcEnd:hover {
-        color: #ff79c6 !important;
+    .XDyW0e:hover, .nDcEnd:hover {
+        color: var(--dr-pink) !important;
         transform: rotate(5deg) scale(1.1) !important;
     }
 
-    /* Google logo with smooth color transition */
+    /* ── Suggestions dropdown ─────────────────────────────── */
+    .aajZCb {
+        background: var(--dr-selection) !important;
+    }
+
+    .sbhl {
+        background: var(--highlight) !important;
+    }
+
+    /* ── Google logo ──────────────────────────────────────── */
     img.lnXdpd {
-        position: relative !important;
-        filter: drop-shadow(0 0 6px rgba(189, 147, 249, 0.5)) brightness(0)
-            invert(1) !important;
-        transition: all 0.3s ease-in-out !important;
+        filter: drop-shadow(0 0 6px rgba(189, 147, 249, 0.5))
+                brightness(0) invert(1) !important;
+        transition: filter var(--t-med) !important;
     }
 
     img.lnXdpd:hover {
-        filter: drop-shadow(0 0 12px rgba(255, 121, 198, 0.8)) brightness(0)
-            invert(0.95) !important;
+        filter: drop-shadow(0 0 14px rgba(255, 121, 198, 0.75))
+                brightness(0) invert(0.95) !important;
     }
 
-    /* Animated background for logo */
+    /* Animated glow behind logo */
     .k1zIA {
         position: relative !important;
         overflow: visible !important;
     }
 
-    .k1zIA:before {
+    .k1zIA::before {
         content: "" !important;
         position: absolute !important;
-        top: -10px !important;
-        left: -10px !important;
-        right: -10px !important;
-        bottom: -10px !important;
+        inset: -10px !important;
         background: linear-gradient(
             45deg,
-            rgba(189, 147, 249, 0.1),
-            rgba(255, 121, 198, 0.1),
-            rgba(139, 233, 253, 0.1)
+            rgba(189, 147, 249, 0.08),
+            rgba(255, 121, 198, 0.08),
+            rgba(139, 233, 253, 0.08)
         ) !important;
         background-size: 400% 400% !important;
-        animation: gradient 3s ease infinite !important;
+        animation: draculaGlow 4s ease infinite !important;
         border-radius: 50% !important;
         z-index: -1 !important;
     }
 
-    @keyframes gradient {
-        0% {
-            background-position: 0% 50% !important;
-        }
-        50% {
-            background-position: 100% 50% !important;
-        }
-        100% {
-            background-position: 0% 50% !important;
-        }
+    @keyframes draculaGlow {
+        0%, 100% { background-position: 0% 50%; }
+        50%       { background-position: 100% 50%; }
     }
 
-    /* Remove old styles */
-    .logo,
-    .lnXdpd::after {
-        display: none !important;
-    }
-
-    /* Links with underline animation */
+    /* ── Links ────────────────────────────────────────────── */
     a {
-        color: var(--dracula-link) !important;
+        color: var(--link) !important;
         text-decoration: none !important;
-        background: linear-gradient(
-            to right,
-            var(--dracula-link-hover) 50%,
-            transparent 50%
-        ) !important;
-        background-size: 200% 1px !important;
-        background-position: 100% 100% !important;
-        background-repeat: no-repeat !important;
     }
 
-    a:hover {
-        color: var(--dracula-link-hover) !important;
-        background-position: 0% 100% !important;
-    }
+    a:hover         { color: var(--link-hover) !important; }
+    a:visited       { color: var(--link-visited) !important; }
+    a:visited:hover { color: var(--link-hover) !important; }
 
-    a:visited {
-        color: var(--dracula-link-visited) !important;
-    }
-
-    a:visited:hover {
-        color: var(--dracula-link-hover) !important;
-    }
-
-    /* Navigation links fade effect */
-    div[class*="gb_"] a,
-    div[class*="c93Gbe"] a {
-        opacity: 0.8 !important;
-    }
-
-    div[class*="gb_"] a:hover,
-    div[class*="c93Gbe"] a:hover {
-        opacity: 1 !important;
-    }
-
-    /* Top navigation bar */
-    div[class*="gb_"] {
-        background-color: #282a36 !important;
-    }
-
-    /* Bottom navigation bar */
-    div[class*="c93Gbe"] {
-        background-color: #282a36 !important;
-    }
-
-    /* Make sure all navigation links are visible */
-    div[class*="gb_"] a,
-    div[class*="c93Gbe"] a {
-        color: #6272a4 !important;
-    }
-
-    div[class*="gb_"] a:hover,
-    div[class*="c93Gbe"] a:hover {
-        color: #8be9fd !important;
-    }
-
-    /* Search input */
-    input.gLFyf {
-        background: transparent !important;
-        color: #f8f8f2 !important;
-        border: none !important;
-    }
-
-    /* Header */
-    .header {
-        background-color: #282a36 !important;
-    }
-
-    .header a {
-        color: #f8f8f2 !important;
-    }
-
-    .header a:hover {
-        color: #ff79c6 !important;
-    }
-
-    /* Footer */
+    /* ── Header / Footer ──────────────────────────────────── */
+    .header { background-color: var(--dr-bg) !important; }
     .footer {
-        background-color: #282a36 !important;
-        border-top: 1px solid #44475a !important;
+        background-color: var(--dr-bg) !important;
+        border-top: 1px solid var(--dr-line) !important;
     }
 
-    .footer a {
-        color: #6272a4 !important;
-    }
+    .footer a       { color: var(--dr-comment) !important; }
+    .footer a:hover { color: var(--dr-cyan) !important; }
 
-    .footer a:hover {
-        color: #8be9fd !important;
-    }
-
-    /* Icons */
-    .icon {
-        color: #bd93f9 !important;
-    }
-
-    .icon:hover {
-        color: #ff79c6 !important;
-    }
-
-    /* Search suggestions dropdown */
-    .suggestions-dropdown {
-        background-color: #44475a !important;
-        border: 1px solid #6272a4 !important;
-        color: #f8f8f2 !important;
-    }
-
-    .suggestion-item:hover {
-        background-color: #6272a4 !important;
-    }
-
-    /* Voice search button */
-    .voice-search {
-        background-color: #44475a !important;
-        color: #ff79c6 !important;
-    }
-    
-
-    /* Image search button */
-    .image-search {
-        background-color: #44475a !important;
-        color: #8be9fd !important;
-    }
-
-    /* Selection color */
+    /* ── Selection & scrollbar ────────────────────────────── */
     ::selection {
-        background-color: #44475a !important;
-        color: #f8f8f2 !important;
+        background-color: var(--dr-selection) !important;
+        color: var(--dr-fg) !important;
     }
 
-    /* Scrollbar */
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: #282a36;
-    }
-
+    ::-webkit-scrollbar       { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--dr-bg); }
     ::-webkit-scrollbar-thumb {
-        background: #44475a;
+        background: var(--dr-line);
         border-radius: 5px;
     }
+    ::-webkit-scrollbar-thumb:hover { background: var(--dr-comment); }
 
-    ::-webkit-scrollbar-thumb:hover {
-        background: #6272a4;
-    }
-
-    /* Dark mode specific overrides */
+    /* ── Dark-mode safety net ─────────────────────────────── */
     @media (prefers-color-scheme: dark) {
-        body {
-            background-color: #282a36 !important;
-        }
-
-        input[type="text"] {
-            background-color: #44475a !important;
-        }
+        body              { background-color: var(--dr-bg) !important; }
+        input[type="text"]{ background-color: var(--dr-line) !important; }
     }
-
-    /* Profile modal */
-    /*     .aRDKUe .Lvwayc {
-        background: #282a36 !important;
-        box-shadow: 0 2px 10px rgba(40, 42, 54, 0.8) !important;
-    } */
 }
 
-/* Google Search Page */
+
+/* =============================================================================
+   GOOGLE SEARCH RESULTS PAGE
+   ============================================================================= */
 @-moz-document regexp("https?:\\/\\/www\\.google(\\.[a-z]{2,3}){1,2}\\/search\\?.*") {
-    /* ==========================================================================
-       Base styles and CSS Variables
-       ========================================================================== */
 
-    :root {
-        /* Dracula Color Palette */
-        --dracula-background: #282a36;
-        --dracula-current-line: #44475a;
-        --dracula-selection: #44475a;
-        --dracula-foreground: #f8f8f2;
-        --dracula-comment: #6272a4;
-        --dracula-cyan: #8be9fd;
-        --dracula-green: #50fa7b;
-        --dracula-orange: #ffb86c;
-        --dracula-pink: #ff79c6;
-        --dracula-purple: #bd93f9;
-        --dracula-red: #ff5555;
-        --dracula-yellow: #f1fa8c;
-
-        /* Custom Theme Variables */
-        --background-secondary: #21222c;
-        --text-muted: #999999;
-        --shadow-color: rgba(0, 0, 0, 0.2);
-        --overlay-color: rgba(40, 42, 54, 0.8);
-        --link-color: var(--dracula-link, #8da8fb);
-        --link-visited: var(--dracula-link-visited, #697ec0);
-        --link-hover: var(--dracula-link-hover, #ff79c6);
-    }
-
-    /* ==========================================================================
-       Global Styles
-       ========================================================================== */
-
-    /* Background Color Overrides */
+    /* ── Base ─────────────────────────────────────────────── */
     body,
-    #cnt,
-    .sfbg,
-    .minidiv .sfbg,
-    #searchform.minidiv,
-    .srp,
-    .gsc-control-cse,
-    .gsc-control-wrapper-cse,
-    .e9EfHf,
-    #appbar,
-    .dodTBe {
-        background: var(--dracula-background) !important;
-    }
-
-    /* Top Navigation Bar */
-    .aajZCb {
-        background: var(--dracula-current-line) !important;
-        border-color: var(--dracula-comment) !important;
-    }
-
-    /* Search Options Bar */
-    .T47uwc {
-        background: var(--background-secondary) !important;
-    }
-
-    .MUFPAc {
-        background: transparent !important;
-    }
-
-    /* Remove white backgrounds from various containers */
-    .g,
-    .bkWMgd,
-    .bkWMgd > div,
-    .jtfYYd,
-    .y8Jpof {
-        background: transparent !important;
-    }
-
-    body {
-        color: var(--dracula-foreground);
+    #cnt, .sfbg, .minidiv .sfbg, #searchform.minidiv,
+    .srp, .gsc-control-cse, .gsc-control-wrapper-cse,
+    .e9EfHf, #appbar, .dodTBe {
+        background: var(--dr-bg) !important;
+        color: var(--dr-fg) !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+                     "Helvetica Neue", sans-serif !important;
     }
 
-    /* Links - Global */
-    a,
-    .LC20lb,
-    .iUh30,
-    .VwiC3b a,
-    .st a,
-    .fl,
-    .BUybKb,
-    .Fx4vi {
-        transition: all 0.3s ease !important;
+    /* Transparent content containers */
+    .g, .bkWMgd, .bkWMgd > div, .jtfYYd, .y8Jpof, .MUFPAc {
+        background: transparent !important;
     }
 
-    /* Links */
-    a,
-    .LC20lb {
-        color: var(--link-color) !important;
+    /* ── Links ────────────────────────────────────────────── */
+    a, .LC20lb, .iUh30, .VwiC3b a, .st a, .fl, .BUybKb, .Fx4vi {
+        transition: all var(--t-med) !important;
+    }
+
+    a, .LC20lb {
+        color: var(--link) !important;
         text-decoration: none !important;
-        transition: all 0.3s ease !important;
     }
 
-    a:visited,
-    a:visited .LC20lb {
-        color: var(--link-visited) !important;
-    }
+    a:visited, a:visited .LC20lb { color: var(--link-visited) !important; }
 
-    a:hover,
-    a:visited:hover,
-    .LC20lb:hover,
-    a:visited .LC20lb:hover {
+    a:hover, a:visited:hover,
+    .LC20lb:hover, a:visited .LC20lb:hover {
         color: var(--link-hover) !important;
         text-decoration: none !important;
     }
 
-    /* ==========================================================================
-       Search Header
-       ========================================================================== */
+    /* ── Search header ────────────────────────────────────── */
+    .aajZCb {
+        background: var(--dr-line) !important;
+        border-color: var(--dr-comment) !important;
+    }
+
+    .T47uwc  { background: var(--dr-bg2) !important; }
 
     .RNNXgb {
-        background: rgba(68, 71, 90, 0.75) !important;
+        background: rgba(68, 71, 90, 0.78) !important;
         backdrop-filter: blur(12px) !important;
         -webkit-backdrop-filter: blur(12px) !important;
-
         border: 1px solid rgba(189, 147, 249, 0.35) !important;
         border-radius: 24px !important;
-
-        box-shadow:
-            0 8px 24px rgba(0, 0, 0, 0.25),
-            0 0 0 1px rgba(255,255,255,0.03) inset !important;
+        box-shadow: 0 8px 24px var(--shadow),
+                    0 0 0 1px rgba(255,255,255,0.03) inset !important;
     }
 
-    /* Active/open search */
     .RNNXgb:hover,
     .RNNXgb:focus-within {
-        background: rgba(68, 71, 90, 0.88) !important;
-        border-color: var(--dracula-purple) !important;
+        background: rgba(68, 71, 90, 0.92) !important;
+        border-color: var(--dr-purple) !important;
     }
 
-    /* Connect search box with suggestions */
+    /* Connect box to dropdown */
     .RNNXgb:focus-within {
         border-bottom-left-radius: 0 !important;
         border-bottom-right-radius: 0 !important;
     }
 
-    /* Search Input */
     .gLFyf {
-        color: var(--dracula-foreground) !important;
+        color: var(--dr-fg) !important;
         background: transparent !important;
         outline: none !important;
     }
 
-    /* Search Button and Icons */
-    .Tg7LZd,
-    .z1asCe,
-    .y6gy3
-    {
-        color: var(--dracula-purple) !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    /* Search / voice / lens icons */
+    .Tg7LZd, .z1asCe, .y6gy3 {
+        color: var(--dr-purple) !important;
+        transition: color var(--t-med) !important;
     }
 
-    .Tg7LZd:hover,
-    .z1asCe:hover,
-    .y6gy3:hover {
-        color: var(--dracula-pink) !important;
-    }
-    
-    /* Search icon (make it white) */
-    .x6vvNd {
-        fill: var(--dracula-foreground) !important;
-    }
+    .Tg7LZd:hover, .z1asCe:hover, .y6gy3:hover { color: var(--dr-pink) !important; }
 
+    .x6vvNd { fill: var(--dr-fg) !important; }
 
-    /* ==========================================================================
-       Search Results
-       ========================================================================== */
-
-    /* Result Title */
+    /* ── Result cards ─────────────────────────────────────── */
     .LC20lb {
-        color: var(--link-color) !important;
+        color: var(--link) !important;
         font-weight: 600;
     }
 
-    .LC20lb:visited {
-        color: var(--link-visited) !important;
-    }
-
-    .LC20lb:hover {
-        color: var(--link-hover) !important;
-        text-decoration: none !important;
-    }
-
-    /* URL Display */
-    .iUh30 {
-        color: var(--dracula-green) !important;
-    }
-
-    .iUh30:hover {
-        color: var(--dracula-pink) !important;
-    }
-
-    /* Result Description */
-    .VwiC3b {
-        color: var(--dracula-foreground) !important;
-    }
-
-    /* Result Metadata */
-    .aCOpRe {
-        color: var(--text-muted) !important;
-    }
-
-    /* ==========================================================================
-       Navigation and Tools
-       ========================================================================== */
-
-    /* Search Tools */
-    .t2vtad {
-        border-color: var(--dracula-current-line) !important;
-        background: var(--background-secondary) !important;
-    }
-
-    /* Pagination */
-    .YyVfkd {
-        color: var(--dracula-purple) !important;
-    }
-
-    /* ==========================================================================
-       Special Results
-       ========================================================================== */
-
-    /* Featured Snippet */
-    .c2xzTb {
-        background: var(--dracula-current-line) !important;
-        border: 1px solid var(--dracula-comment) !important;
-        border-radius: 8px;
-    }
-
-    /* Knowledge Panel */
-    .kp-wholepage {
-        border-radius: 8px;
-        margin: 0 16px 16px 0 !important;
-        padding: 0 16px 16px 0 !important;
-    }
-    
-    /* ==========================================================================
-   Section: Ticket Button (See tickets)
-   ========================================================================== */
-
-    /* Button background */
-    .ygsxke {
-        background: var(--dracula-purple) !important;
-    }
-
-    /* Force text color (fix pink hover issue) */
-    a.ZpEhbb.ygsxke {
-        color: var(--dracula-foreground) !important; 
-    }
-
-    a.ZpEhbb.ygsxke:hover {
-        color: var(--dracula-foreground) !important; 
-    }
-
-    /* Ticket icon */
-    .o3cCx.NMm5M {
-        color: var(--dracula-foreground) !important;
-    }
-
-
-    /* Knowledge Panel Container */
-    #rhs {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    /* Knowledge Panel Header */
-    .kno-ecr-pt {
-        color: var(--dracula-purple) !important;
-        font-weight: 600;
-        margin-top: 8px !important;
-    }
-
-    /* Knowledge Panel Links */
-    .kno-fv {
-        color: var(--link-color) !important;
-    }
-
-    /* Knowledge Panel Sections */
-    .wwUB2c {
-        border-color: var(--dracula-current-line) !important;
-        padding: 12px 0 !important;
-    }
-
-    /* Knowledge Panel Images */
-    .kno-mrg {
-        border-radius: 4px;
-        overflow: hidden;
-    }
-
-    /* Knowledge Panel Buttons */
-    .kno-fb-ctx {
-        background: var(--dracula-current-line) !important;
-        border-color: var(--dracula-comment) !important;
-        border-radius: 4px;
-    }
-
-    /* Image Results */
-    .isv-r {
-        background: var(--dracula-current-line) !important;
-        border-radius: 8px;
-        transition: transform 0.2s ease;
-    }
-
-    .isv-r:hover {
-        transform: translateY(-2px);
-    }
-
-    /* ==========================================================================
-   Section: AI Overview / Gemini Panel Fixes
-   ========================================================================== */
-
-    /* Fix gradient overlay in AI overview header */
-    .RDmXvc,
-    .Zze5V {
-        background-image: linear-gradient(
-            transparent 0px,
-            var(--dracula-background) 52px,
-            var(--dracula-background) 80px
-        ) !important;
-    }
-
-    /* Fix "Show more" expansion background inside AI overview */
-    .zNsLfb {
-        background-color: var(--dracula-background) !important;
-    }
-
-    /* Fix missing fade gradient inside expandable AI sections */
-    .b0Zsmc {
-        background-image: linear-gradient(
-            transparent 0%,
-            var(--dracula-background) 100%
-        ) !important;
-    }
-    
-    .xrOenc {
-        background-color: var(--dracula-selection) !important;
-    }
-    
-    /*   AI card   */
-    .rG9tvd, .HWMcu{
-        background-color: var(--dracula-current-line) !important;
-    }
-    
-    /*  AI card button (show more)    */
-    .BjvG9b{
-        background: var(--dracula-purple) !important;
-        border-radius: 28px !important;
-    }
-       
-    /*   AI Search Query   */
-    .iKaRFc{
-        background: var(--dracula-current-line) !important;
-        border-radius: 28px !important;
-    }
-    
-    /*  AI button search    */
-    .wPoHPd .OEueve.OEueve {
-        background: var(--dracula-purple);
-        border-radius: 28px !important;
-    }
-    
-    /* Highlighted suggestion (keyboard or hover) */
-    .sbhl {
-        background: #4b4f68 !important;
-    }
-
-    /* AI suggestion buttons */
-    .sbct.PZPZlf.yMAEcf {
-        background: var(--dracula-purple) !important;
-    }
-
-    /* ==========================================================================  
-    Section: Header / Search Tabs Bar Fixes
-    ========================================================================== */
-
-    /* Fix missing background color when scrolling in search tab bar */
-    .VHFyob .CvDJxb {
-        background-color: var(--dracula-background) !important;
-    }
-
-    /* ==========================================================================
-       Utility Classes
-       ========================================================================== */
-
-    /* Loading States */
-    .loading {
-        background: var(--dracula-current-line) !important;
-    }
-
-    /* Highlights */
-    .hNKfZe {
-        color: var(--dracula-orange) !important;
-    }
-
-    /* ==========================================================================
-       Responsive Design
-       ========================================================================== */
-
-    @media (max-width: 768px) {
-        .RNNXgb {
-            border-radius: 16px;
-        }
-
-        .kp-wholepage {
-            border-radius: 0;
-        }
-    }
-
-    /* ==========================================================================
-       Accessibility
-       ========================================================================== */
-
-    /* Focus States */
-    *:focus {
-        outline: none !important;
-    }
-
-    /* Custom focus styles for interactive elements */
-    a:focus,
-    button:focus,
-    input:not(.gLFyf):focus,
-    [role="button"]:focus {
-        box-shadow: 0 0 0 2px var(--dracula-background),
-            0 0 0 4px var(--dracula-comment) !important;
-        border-radius: 4px;
-    }
-
-    /* Keep outline for keyboard navigation only */
-    :focus:not(:focus-visible) {
-        outline: none !important;
-        box-shadow: none !important;
-    }
-
-    /* High Contrast Mode */
-    @media (forced-colors: active) {
-        .LC20lb {
-            color: LinkText !important;
-        }
-
-        .iUh30 {
-            color: GrayText !important;
-        }
-    }
-
-    /* See Results About Cards */
-    .uais2d {
-        background: var(--dracula-current-line) !important;
-        border-radius: 8px !important;
-        border: 1px solid transparent !important;
-        transition: all 0.2s ease !important;
-    }
-
-    .uais2d:hover {
-        background: var(--dracula-selection) !important;
-        border-color: var(--dracula-comment) !important;
-    }
-
-    /* Show More Images Button */
-    .ZFiwCf {
-        background-color: var(--dracula-current-line) !important;
-        border: 1px solid transparent !important;
-        transition: all 0.2s ease !important;
-    }
-
-    .ZFiwCf:hover {
-        background-color: var(--dracula-selection) !important;
-        border-color: var(--dracula-comment) !important;
-    }
-
-    /* Horizontal Rule */
-    .Bi9oQd {
-        background-color: var(--dracula-current-line) !important;
-        border: none !important;
-    }
-
-    /* Remove previous incorrect selector */
-    .ZZWlwf {
-        display: none; /* This line is just to help find and remove this block */
-    }
-
-    /* ==========================================================================
-       Section: Image Results
-       ========================================================================== */
-
-    /* "Show more images" expand button - appears at the bottom of image results section */
-    .ZFiwCf {
-        background-color: var(--dracula-current-line) !important;
-        border: 1px solid transparent !important;
-        transition: all 0.2s ease !important;
-    }
-
-    .ZFiwCf:hover {
-        background-color: var(--dracula-selection) !important;
-        border-color: var(--dracula-comment) !important;
-    }
-
-    /* Horizontal divider for image section */
-    .Bi9oQd {
-        background-color: var(--dracula-current-line) !important;
-        border: none !important;
-    }
-
-    /* ==========================================================================
-       Section: Video Results
-       ========================================================================== */
-
-    /* "View all" button - appears at the bottom of video results section */
-    .S8ee5 {
-        background: var(--dracula-current-line) !important;
-        border: 1px solid transparent !important;
-        transition: all 0.2s ease !important;
-    }
-
-    .S8ee5:hover {
-        background: var(--dracula-selection) !important;
-        border-color: var(--dracula-comment) !important;
-    }
-
-    /* Horizontal divider for video section */
-    .rhHIGd {
-        background-color: var(--dracula-current-line) !important;
-        border: none !important;
-    }
-
-    /* Google Logo and Pagination Styles */
-    .logo {
-        filter: brightness(0) invert(1) !important;
-    }
-
-    /* Fix for repeated 'o' letters in Google logo */
-    .goooooooooogle {
-        color: var(--dracula-foreground) !important;
-        font-family: arial, sans-serif !important;
-    }
-
-    /* Pagination container */
-    #foot {
-        background: transparent !important;
-    }
-
-    /* Pagination numbers */
-    #xjs a,
-    #xjs span {
-        color: var(--dracula-foreground) !important;
-        background: transparent !important;
-    }
-
-    #xjs a:hover {
-        color: var(--dracula-pink) !important;
-        text-decoration: none !important;
-    }
-
-    /* Current page number */
-    .YyVfkd {
-        color: var(--dracula-purple) !important;
-    }
-
-    /* Next button */
-    #pnnext {
-        color: var(--link-color) !important;
-    }
-
-    #pnnext:hover {
-        color: var(--link-hover) !important;
-    }
-
-    /* Previous button */
-    #pnprev {
-        color: var(--link-color) !important;
-    }
-
-    #pnprev:hover {
-        color: var(--link-hover) !important;
-    }
-
-    /* ==========================================================================
-       Section: People also search for
-       ========================================================================== */
-
-    /* People also search for cards */
-    .vIifob {
-        background-color: var(--dracula-current-line) !important;
-        border: 1px solid transparent !important;
-        transition: all 0.2s ease !important;
-    }
-
-    .vIifob:hover {
-        background-color: var(--dracula-selection) !important;
-        border-color: var(--dracula-comment) !important;
-    }
-
-    /* People also search for - Image cards */
-    .IPpbe {
-        background-color: var(--dracula-background) !important;
-    }
-
-    /* ==========================================================================
-       Section: Footer
-       ========================================================================== */
-
-    /* Footer background */
-    #footcnt,
-    #fbar,
-    .GNueGc,
-    .TuS8Ad {
-        background-color: var(--dracula-background) !important;
-    }
-
-    /* Footer border and container */
-    .f6F9Be {
-        background: var(--dracula-background) !important;
-        border-top: 1px solid var(--dracula-current-line) !important;
-    }
-
-    /* Location info */
-    .ELcVZ {
-        color: var(--dracula-comment) !important;
-    }
-
-    /* Location text and links */
-    .ELcVZ,
-    .Q8LRLc,
-    .gMZyfc,
-    .uEec3 {
-        color: var(--dracula-comment) !important;
-    }
-
-    /* Location update link */
-    .BUybKb {
-        color: var(--link-color) !important;
-    }
-
-    .BUybKb:hover {
-        color: var(--link-hover) !important;
-        text-decoration: none !important;
-    }
-
-    /* Footer links */
-    .Fx4vi {
-        color: var(--dracula-comment) !important;
-        transition: color 0.2s ease !important;
-    }
-
-    .Fx4vi:hover {
-        color: var(--link-color) !important;
-        text-decoration: none !important;
-    }
-
-    /* Footer dividers */
-    .b2hzT {
-        border-color: var(--dracula-current-line) !important;
-    }
-
-    /* Not personalized text */
-    .g3B0Ff {
-        color: var(--dracula-comment) !important;
-    }
-
-    /* Knowledge Panel - People also search for section */
-    .KcXNxb {
-        background-color: var(--dracula-background) !important;
-    }
-
-    /* Not personalized text */
-    .g3B0Ff {
-        color: var(--dracula-comment) !important;
-    }
-
-    /* ==========================================================================
-       Section: People also ask
-       ========================================================================== */
-
-    /* Expand/Collapse buttons */
-    .fxvkXe,
-    .p8Jhnd {
-        background-color: var(--dracula-current-line) !important;
-        border: 1px solid transparent !important;
-        transition: all 0.2s ease !important;
-    }
-
-    .fxvkXe:hover,
-    .p8Jhnd:hover {
-        background-color: var(--dracula-selection) !important;
-        border-color: var(--dracula-comment) !important;
-    }
-
-    /* Question text */
-    .related-question-pair {
-        color: var(--dracula-foreground) !important;
-    }
-
-    /* ==========================================================================
-       Section: Knowledge Panel Buttons
-       ========================================================================== */
-
-    /* Top-right circular button */
-    .rXoM2c .niO4u {
-        background-color: var(--dracula-current-line) !important;
-        border: 1px solid transparent !important;
-        transition: border-color 0.2s ease !important;
-    }
-
-    .rXoM2c .niO4u:hover,
-    .rXoM2c .niO4u:hover::before {
-        /* background-color: var(--dracula-current-line) !important; */
-        border-color: var(--dracula-comment) !important;
-    }
-
-    /* More button in top menu (including News tab) */
-    .Lu57id,
-    .fKmH1e {
-        background-color: var(--dracula-background) !important;
-        color: var(--dracula-comment) !important;
-        transition: all 0.3s ease !important;
-    }
-
-    .Lu57id:hover,
-    .fKmH1e:hover {
-        background-color: var(--dracula-selection) !important;
-        color: var(--dracula-foreground) !important;
-    }
-
-    /* Top navigation menu items */
-    .YmvwI {
-        color: var(--dracula-comment) !important;
-        transition: all 0.3s ease !important;
-    }
-
-    .YmvwI:hover {
-        color: var(--dracula-foreground) !important;
-    }
-
-    /* Selected menu item */
-    [selected].YmvwI {
-        color: var(--dracula-purple) !important;
-        border-bottom: 3px solid var(--dracula-purple) !important;
-    }
-
-    /* ==========================================================================
-       Section: News Page Links
-       ========================================================================== */
-
-    /* News article links
-     * .ynAwRc - Base class for news article links
-     * Preserving original styles while adding Dracula theme colors
-     */
-    .ynAwRc {
-        color: var(--link-color) !important;
-        transition: all 0.3s ease !important;
-        -webkit-line-clamp: 3;
-    }
-
-    /* News link hover state */
-    .ynAwRc:hover {
-        color: var(--link-hover) !important;
-        text-decoration: none !important;
-    }
-
-    /* Visited news links - using purple for visited state
-     * while preserving the multi-line ellipsis behavior
-     */
-    a:visited .ynAwRc {
-        color: var(--link-visited) !important;
-    }
-
-    a:visited .ynAwRc:hover {
-        color: var(--link-hover) !important;
-    }
-
-    /* Knowledge Panel image container background
-     * Fills the empty space when image ratio doesn't match container
-     */
-    .b4cr6b {
-        background-color: var(--dracula-current-line) !important;
-    }
-
-    /* Knowledge Panel bottom button */
-    a.WpKAof {
-        text-decoration: none !important;
-        transition: all 0.3s ease !important;
-    }
-
-    a.WpKAof:hover {
-        text-decoration: none !important;
-        color: var(--link-hover) !important;
-    }
-
-    /* Knowledge Panel bottom text */
-    .Z4Cazf {
-        text-decoration: none !important;
-        transition: all 0.3s ease !important;
-    }
-
-    a .Z4Cazf:hover {
-        text-decoration: none !important;
-    }
-
-    /* Knowledge Panel - Review Section */
-    .uVGhGc {
-        background-color: var(--dracula-current-line) !important;
-    }
-
-    .l2gNXd {
-        background-color: var(--dracula-purple) !important;
-    }
-
-    /* ==========================================================================
-       Section: Things to do
-       ========================================================================== */
-
-    /* Container background */
-    .ZVHLgc {
-        background-color: var(--dracula-background) !important;
-    }
-
-    /* Card background */
-    .YXe3R {
-        background-color: var(--dracula-current-line) !important;
-    }
-
-    /* ==========================================================================
-       Section: Places to visit
-       ========================================================================== */
-
-    /* Container background */
-    .kuydt {
-        background-color: var(--dracula-background) !important;
-    }
-    
-
-    /* Card background */
-    .YXe3R {
-        background-color: var(--dracula-current-line) !important;
-    }
-
-    /* Knowledge Panel - Review Section */
-    .uVGhGc {
-        background-color: var(--dracula-current-line) !important;
-    }
-
-    .l2gNXd {
-        background-color: var(--dracula-purple) !important;
-    }
-
-    /* ==========================================================================
-       Section: Things to do Search Results
-       ========================================================================== */
-
-    /* Top sights section (appears when searching for "Things to do in [location]")
-     * This section shows attraction cards with ratings, descriptions, and prices
-     */
-    .IiOSLb .rsGxI.Ww4FFb,
-    .Ww4FFb {
-        background-color: var(--dracula-background) !important;
-    }
-
-    /* Card background - reusing the same style for consistency */
-    .YXe3R{
-        background-color: var(--dracula-current-line) !important;
-    }
-
-    /* ==========================================================================
-       Section: Market Summary
-       ========================================================================== */
-
-    /* Chart hover tooltip card
-     * Shows price and time information when hovering over the chart
-     */
-    .knowledge-finance-wholepage-chart__hover-card {
-        background-color: var(--dracula-current-line) !important;
-    }
-
-    /* Text background fixes */
-    .yvg0ob span,
-    .uch-xa-tl {
-        background-color: var(--dracula-background) !important;
-    }
-
-    /* Overview/Compare buttons */
-    .REySof {
-        background-color: var(--dracula-current-line) !important;
-        transition: all 0.3s ease !important;
-    }
-
-    .REySof:hover {
-        background-color: var(--dracula-selection) !important;
-    }
-
-    /* Compare search box */
-    .EEmK6c {
-        background-color: var(--dracula-current-line) !important;
-        border-radius: 8px !important;
-        border: 1px solid transparent !important;
-        transition: all 0.3s ease !important;
-    }
-
-    .EEmK6c:hover {
-        border-color: var(--dracula-comment) !important;
-    }
-
-    .KIdUu {
-        background: transparent !important;
-    }
-
-    /* ==========================================================================
-       Section: Search Suggestions Dropdown
-       ========================================================================== */
-
-    /* Suggestions dropdown background */
-    .YYF5qc div.sbdd_b,
-    .YYF5qc div.sbsb_a,
-    .gstl_50 .sbdd_b {
-        background-color: var(--dracula-current-line) !important;
-        border: 1px solid transparent !important;
-        border-radius: 0 0 8px 8px !important;
-    }
-
-    /* Individual suggestion items */
-    .sbai,
-    .sbpqs_a,
-    .sbse {
-        transition: all 0.2s ease !important;
-    }
-
-    /* Suggestion item hover state */
-    .sbsb_d, /* Selected item */
-    .sbsb_a div:hover,
-    .YYF5qc div:hover {
-        background-color: var(--dracula-selection) !important;
-    }
-
-    /* ==========================================================================
-       Section: Image Search Results
-       ========================================================================== */
-
-    /* Image grid container background */
-    .u32vCb .wIjY0d {
-        background-color: var(--dracula-background) !important;
-    }
-
-    /* Image card background */
-    .H8Rx8c {
-        background-color: var(--dracula-current-line) !important;
-    }
-
-    /* ==========================================================================
-       Section: Related Search Cards
-       ========================================================================== */
-
-    /* Related search card background */
-    .GKS7s {
-        background-color: var(--dracula-current-line) !important;
-        border: 1px solid transparent !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
-    }
-
-    .GKS7s:hover {
-        box-shadow: 0 4px 12px rgba(189, 147, 249, 0.4) !important;
-        border-color: var(--dracula-purple) !important;
-        transform: translateY(-2px) !important;
-    }
-
-    /* ==========================================================================
-       Section: Shopping Results
-       ========================================================================== */
-
-    /* Product card background */
-    .i0X6df {
-        background-color: var(--dracula-current-line) !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    }
-
-    /* Shopping filter box background */
-    .ECBYL .sh-dr__g {
-        /*         background-color: var(--dracula-current-line) !important; */
-    }
-
-    /* Shopping filter box title text */
-    div.lg3aE {
-        color: var(--dracula-purple) !important;
-        font-weight: 600 !important;
-        /*         font-size: 14px !important;
-        margin-bottom: 8px !important; */
-    }
-
-    /* ==========================================================================
-       Section: Result Cards and Dividers
-       ========================================================================== */
-
-    /* Search results topic cards - shown at the top of search results
-     * These cards show related topics with images (e.g., Count Dracula, Bram Stoker's Dracula, etc.)
-     * The selector .UivI7b targets the card container
-     */
+    .iUh30         { color: var(--dr-green) !important; }
+    .iUh30:hover   { color: var(--dr-pink) !important; }
+    .VwiC3b        { color: var(--dr-fg) !important; }
+    .aCOpRe        { color: #999 !important; }
+
+    /* ── Topic result cards ───────────────────────────────── */
     div.UivI7b {
-        background-color: var(--dracula-selection) !important;
+        background-color: var(--dr-selection) !important;
         border-radius: 8px !important;
         border: 1px solid transparent !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transition: all var(--t-med) !important;
     }
 
     div.UivI7b:hover {
-        border-color: var(--dracula-comment) !important;
-        box-shadow: 0 4px 12px rgba(189, 147, 249, 0.3) !important;
+        border-color: var(--dr-comment) !important;
+        box-shadow: 0 4px 14px rgba(189, 147, 249, 0.3) !important;
     }
 
-    /* Maintain original link styling within result cards */
     div.UivI7b a,
     div.UivI7b a:visited,
     div.UivI7b a:hover {
-        color: var(--dracula-foreground) !important;
+        color: var(--dr-fg) !important;
         text-decoration: none !important;
-        transition: opacity 0.3s ease !important;
     }
 
-    div.UivI7b a:hover {
-        opacity: 0.8 !important;
-    }
+    div.UivI7b a:hover { opacity: 0.8 !important; }
 
-    /* Search result card divider 
-     * The divider shown below search result cards
-     * The selector .akqY6 targets the divider element
-     */
+    /* Card divider */
     div.akqY6 {
-        background-color: var(--dracula-selection) !important;
+        background-color: var(--dr-selection) !important;
         height: 1px !important;
         border: none !important;
     }
 
-    /* Menu toggle button (arrow shaped)
-     * Used to toggle additional menu options in search results
-     * The selectors .dvfTSb.OdANFd target the arrow button
-     * No hover effect applied as per requirements
-     */
+    /* Menu toggle arrow */
     .dvfTSb.OdANFd {
-        background-color: var(--dracula-selection) !important;
+        background-color: var(--dr-selection) !important;
         border-radius: 4px !important;
         border: 1px solid transparent !important;
     }
 
-    /* Prevent SVG icon inside the toggle button from changing color on hover
-     * This overrides the global link hover styles for this specific icon
-     */
+    /* Lock SVG icons inside toggle to foreground color */
     .dvfTSb.OdANFd svg,
     .dvfTSb.OdANFd svg path,
     .dvfTSb.OdANFd svg rect,
     .dvfTSb.OdANFd svg circle,
     .dvfTSb.OdANFd svg polygon,
-    .dvfTSb.OdANFd svg g {
-        color: var(--dracula-foreground) !important;
-        fill: var(--dracula-foreground) !important;
-        stroke: var(--dracula-foreground) !important;
-        transition: none !important;
-    }
-
+    .dvfTSb.OdANFd svg g,
     .dvfTSb.OdANFd:hover svg,
     .dvfTSb.OdANFd:hover svg path,
     .dvfTSb.OdANFd:hover svg rect,
     .dvfTSb.OdANFd:hover svg circle,
     .dvfTSb.OdANFd:hover svg polygon,
     .dvfTSb.OdANFd:hover svg g {
-        color: var(--dracula-foreground) !important;
-        fill: var(--dracula-foreground) !important;
-        stroke: var(--dracula-foreground) !important;
+        color: var(--dr-fg) !important;
+        fill: var(--dr-fg) !important;
+        stroke: var(--dr-fg) !important;
+        transition: none !important;
         opacity: 1 !important;
     }
 
-    /* See Results About Cards */
+    /* ── Featured snippet / knowledge panel ───────────────── */
+    .c2xzTb {
+        background: var(--dr-line) !important;
+        border: 1px solid var(--dr-comment) !important;
+        border-radius: 8px;
+    }
+
+    .kp-wholepage {
+        border-radius: 8px;
+        margin: 0 16px 16px 0 !important;
+        padding: 0 16px 16px 0 !important;
+    }
+
+    #rhs { margin: 0 !important; padding: 0 !important; }
+
+    .kno-ecr-pt { color: var(--dr-purple) !important; font-weight: 600; margin-top: 8px !important; }
+    .kno-fv     { color: var(--link) !important; }
+    .wwUB2c     { border-color: var(--dr-line) !important; padding: 12px 0 !important; }
+    .kno-mrg    { border-radius: 4px; overflow: hidden; }
+    .kno-fb-ctx {
+        background: var(--dr-line) !important;
+        border-color: var(--dr-comment) !important;
+        border-radius: 4px;
+    }
+
+    .b4cr6b   { background-color: var(--dr-line) !important; }
+    .uVGhGc   { background-color: var(--dr-line) !important; }
+    .l2gNXd   { background-color: var(--dr-purple) !important; }
+    .KcXNxb   { background-color: var(--dr-bg) !important; }
+    .rXoM2c .niO4u {
+        background-color: var(--dr-line) !important;
+        border: 1px solid transparent !important;
+        transition: border-color var(--t-fast) !important;
+    }
+    .rXoM2c .niO4u:hover { border-color: var(--dr-comment) !important; }
+
+    /* Knowledge panel bottom link/text */
+    a.WpKAof, .Z4Cazf {
+        text-decoration: none !important;
+        transition: all var(--t-med) !important;
+    }
+    a.WpKAof:hover  { color: var(--link-hover) !important; }
+    a .Z4Cazf:hover { text-decoration: none !important; }
+
+    /* ── "See results about" cards ────────────────────────── */
     .uais2d {
-        background: var(--dracula-current-line) !important;
+        background: var(--dr-line) !important;
         border-radius: 8px !important;
         border: 1px solid transparent !important;
-        transition: all 0.2s ease !important;
+        transition: all var(--t-fast) !important;
     }
-
     .uais2d:hover {
-        background: var(--dracula-selection) !important;
-        border-color: var(--dracula-comment) !important;
+        background: var(--dr-selection) !important;
+        border-color: var(--dr-comment) !important;
     }
 
-    /* ==========================================================================
-       Section: Profile Icons
-       ========================================================================== */
+    /* ── Ticket / event button ────────────────────────────── */
+    .ygsxke             { background: var(--dr-purple) !important; }
+    a.ZpEhbb.ygsxke,
+    a.ZpEhbb.ygsxke:hover { color: var(--dr-fg) !important; }
+    .o3cCx.NMm5M        { color: var(--dr-fg) !important; }
 
-    /* Social media profile icons (circular background)
-     * These appear in the Profiles section (Instagram, YouTube, Facebook, LinkedIn, etc.)
-     * Removing outlines and applying Dracula selection color
-     */
+    /* ── AI Overview / Gemini ─────────────────────────────── */
+    .RDmXvc, .Zze5V {
+        background-image: linear-gradient(
+            transparent 0px,
+            var(--dr-bg) 52px,
+            var(--dr-bg) 80px
+        ) !important;
+    }
+    .zNsLfb { background-color: var(--dr-bg) !important; }
+    .b0Zsmc {
+        background-image: linear-gradient(
+            transparent 0%,
+            var(--dr-bg) 100%
+        ) !important;
+    }
+    .xrOenc   { background-color: var(--dr-selection) !important; }
+    .rG9tvd,
+    .HWMcu    { background-color: var(--dr-line) !important; }
+    .BjvG9b   { background: var(--dr-purple) !important; border-radius: 28px !important; }
+    .iKaRFc   { background: var(--dr-line) !important; border-radius: 28px !important; }
+    .wPoHPd .OEueve.OEueve {
+        background: var(--dr-purple) !important;
+        border-radius: 28px !important;
+    }
+    .sbhl     { background: var(--highlight) !important; }
+    .sbct.PZPZlf.yMAEcf { background: var(--dr-purple) !important; }
+
+    /* ── Tab bar ──────────────────────────────────────────── */
+    .VHFyob .CvDJxb { background-color: var(--dr-bg) !important; }
+
+    .Lu57id, .fKmH1e {
+        background-color: var(--dr-bg) !important;
+        color: var(--dr-comment) !important;
+        transition: all var(--t-med) !important;
+    }
+    .Lu57id:hover, .fKmH1e:hover {
+        background-color: var(--dr-selection) !important;
+        color: var(--dr-fg) !important;
+    }
+    .YmvwI {
+        color: var(--dr-comment) !important;
+        transition: all var(--t-med) !important;
+    }
+    .YmvwI:hover     { color: var(--dr-fg) !important; }
+    [selected].YmvwI {
+        color: var(--dr-purple) !important;
+        border-bottom: 3px solid var(--dr-purple) !important;
+    }
+
+    /* ── Image results ────────────────────────────────────── */
+    .isv-r {
+        background: var(--dr-line) !important;
+        border-radius: 8px;
+        transition: transform var(--t-fast);
+    }
+    .isv-r:hover     { transform: translateY(-2px); }
+    .u32vCb .wIjY0d  { background-color: var(--dr-bg) !important; }
+    .H8Rx8c          { background-color: var(--dr-line) !important; }
+
+    /* "Show more images" / section expander buttons */
+    .ZFiwCf {
+        background-color: var(--dr-line) !important;
+        border: 1px solid transparent !important;
+        transition: all var(--t-fast) !important;
+    }
+    .ZFiwCf:hover {
+        background-color: var(--dr-selection) !important;
+        border-color: var(--dr-comment) !important;
+    }
+
+    /* Section dividers */
+    .Bi9oQd, .rhHIGd {
+        background-color: var(--dr-line) !important;
+        border: none !important;
+    }
+
+    /* ── Video results ────────────────────────────────────── */
+    .S8ee5 {
+        background: var(--dr-line) !important;
+        border: 1px solid transparent !important;
+        transition: all var(--t-fast) !important;
+    }
+    .S8ee5:hover {
+        background: var(--dr-selection) !important;
+        border-color: var(--dr-comment) !important;
+    }
+
+    /* ── People also ask ──────────────────────────────────── */
+    .fxvkXe, .p8Jhnd {
+        background-color: var(--dr-line) !important;
+        border: 1px solid transparent !important;
+        transition: all var(--t-fast) !important;
+    }
+    .fxvkXe:hover, .p8Jhnd:hover {
+        background-color: var(--dr-selection) !important;
+        border-color: var(--dr-comment) !important;
+    }
+    .related-question-pair { color: var(--dr-fg) !important; }
+
+    /* ── People also search for ───────────────────────────── */
+    .vIifob {
+        background-color: var(--dr-line) !important;
+        border: 1px solid transparent !important;
+        transition: all var(--t-fast) !important;
+    }
+    .vIifob:hover {
+        background-color: var(--dr-selection) !important;
+        border-color: var(--dr-comment) !important;
+    }
+    .IPpbe { background-color: var(--dr-bg) !important; }
+
+    /* ── Related searches ─────────────────────────────────── */
+    .GKS7s {
+        background-color: var(--dr-line) !important;
+        border: 1px solid transparent !important;
+        box-shadow: 0 2px 5px var(--shadow) !important;
+        transition: all var(--t-med) !important;
+    }
+    .GKS7s:hover {
+        border-color: var(--dr-purple) !important;
+        box-shadow: 0 4px 14px rgba(189, 147, 249, 0.35) !important;
+        transform: translateY(-2px) !important;
+    }
+
+    /* ── Shopping results ─────────────────────────────────── */
+    .i0X6df {
+        background-color: var(--dr-line) !important;
+        transition: all var(--t-med) !important;
+    }
+    div.lg3aE {
+        color: var(--dr-purple) !important;
+        font-weight: 600 !important;
+    }
+
+    /* ── Market / finance panel ───────────────────────────── */
+    .knowledge-finance-wholepage-chart__hover-card {
+        background-color: var(--dr-line) !important;
+    }
+    .yvg0ob span, .uch-xa-tl { background-color: var(--dr-bg) !important; }
+    .REySof {
+        background-color: var(--dr-line) !important;
+        transition: all var(--t-med) !important;
+    }
+    .REySof:hover { background-color: var(--dr-selection) !important; }
+    .EEmK6c {
+        background-color: var(--dr-line) !important;
+        border-radius: 8px !important;
+        border: 1px solid transparent !important;
+        transition: all var(--t-med) !important;
+    }
+    .EEmK6c:hover { border-color: var(--dr-comment) !important; }
+    .KIdUu        { background: transparent !important; }
+
+    /* ── Things to do / places ────────────────────────────── */
+    .ZVHLgc, .kuydt { background-color: var(--dr-bg) !important; }
+    .YXe3R          { background-color: var(--dr-line) !important; }
+    .IiOSLb .rsGxI.Ww4FFb,
+    .Ww4FFb         { background-color: var(--dr-bg) !important; }
+
+    /* ── Search suggestions dropdown ──────────────────────── */
+    .YYF5qc div.sbdd_b,
+    .YYF5qc div.sbsb_a,
+    .gstl_50 .sbdd_b {
+        background-color: var(--dr-line) !important;
+        border: 1px solid transparent !important;
+        border-radius: 0 0 8px 8px !important;
+    }
+    .sbai, .sbpqs_a, .sbse { transition: all var(--t-fast) !important; }
+    .sbsb_d,
+    .sbsb_a div:hover,
+    .YYF5qc div:hover { background-color: var(--dr-selection) !important; }
+
+    /* ── Profile icons ────────────────────────────────────── */
     .zqrO0 .niO4u {
-        background-color: var(--dracula-selection) !important;
+        background-color: var(--dr-selection) !important;
         outline: none !important;
         border: 1px solid transparent !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transition: all var(--t-med) !important;
     }
-
     .zqrO0 .niO4u:hover {
-        border-color: var(--dracula-comment) !important;
+        border-color: var(--dr-comment) !important;
         box-shadow: 0 2px 8px rgba(189, 147, 249, 0.3) !important;
     }
-    
-    .ygsxke{
-        background: var(--dracula-purple) !important;
+
+    /* ── News links ───────────────────────────────────────── */
+    .ynAwRc {
+        color: var(--link) !important;
+        transition: all var(--t-med) !important;
+        -webkit-line-clamp: 3;
     }
-    
-    /* ==========================================================================
-   Section: ???? (idk where to put them lol)
-   ========================================================================== */
-    
-    /* google search song suggestion */
-    .AB2Fdd.o6OF0.DJbVFb{
-     background: #4b4f68 !important;   
+    .ynAwRc:hover        { color: var(--link-hover) !important; text-decoration: none !important; }
+    a:visited .ynAwRc    { color: var(--link-visited) !important; }
+    a:visited .ynAwRc:hover { color: var(--link-hover) !important; }
+
+    /* ── Pagination ───────────────────────────────────────── */
+    .logo   { filter: brightness(0) invert(1) !important; }
+    .goooooooooogle {
+        color: var(--dr-fg) !important;
+        font-family: arial, sans-serif !important;
     }
-    
-    /* artist/released/album card */
-    .b3puKe{
-        background: var(--dracula-selection) !important;
+
+    #foot    { background: transparent !important; }
+    #xjs a,
+    #xjs span { color: var(--dr-fg) !important; background: transparent !important; }
+    #xjs a:hover { color: var(--dr-pink) !important; text-decoration: none !important; }
+    .YyVfkd  { color: var(--dr-purple) !important; }
+
+    #pnnext, #pnprev       { color: var(--link) !important; }
+    #pnnext:hover,
+    #pnprev:hover          { color: var(--link-hover) !important; }
+
+    /* ── Footer ───────────────────────────────────────────── */
+    #footcnt, #fbar, .GNueGc, .TuS8Ad {
+        background-color: var(--dr-bg) !important;
     }
-    
-    /* ai card suggestion */
-    .ytGmGe.ULBRwc{
-        background: var(--dracula-selection) !important;
+    .f6F9Be {
+        background: var(--dr-bg) !important;
+        border-top: 1px solid var(--dr-line) !important;
+    }
+    .ELcVZ, .Q8LRLc, .gMZyfc, .uEec3, .g3B0Ff {
+        color: var(--dr-comment) !important;
+    }
+    .BUybKb       { color: var(--link) !important; }
+    .BUybKb:hover { color: var(--link-hover) !important; text-decoration: none !important; }
+    .Fx4vi        { color: var(--dr-comment) !important; transition: color var(--t-fast) !important; }
+    .Fx4vi:hover  { color: var(--link) !important; text-decoration: none !important; }
+    .b2hzT        { border-color: var(--dr-line) !important; }
+
+    /* ── Misc ─────────────────────────────────────────────── */
+    .t2vtad {
+        border-color: var(--dr-line) !important;
+        background: var(--dr-bg2) !important;
+    }
+    .hNKfZe { color: var(--dr-orange) !important; }
+    .loading { background: var(--dr-line) !important; }
+
+    /* Song suggestion pill */
+    .AB2Fdd.o6OF0.DJbVFb { background: var(--highlight) !important; }
+    /* Artist / album card  */
+    .b3puKe              { background: var(--dr-selection) !important; }
+    /* AI card suggestion  */
+    .ytGmGe.ULBRwc {
+        background: var(--dr-selection) !important;
         border-radius: 16px !important;
-        border: 1px solid #6272a4 !important;
+        border: 1px solid var(--dr-comment) !important;
+    }
+
+    /* ── Selection & scrollbar ────────────────────────────── */
+    ::selection {
+        background-color: var(--dr-selection) !important;
+        color: var(--dr-fg) !important;
+    }
+
+    ::-webkit-scrollbar       { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--dr-bg); }
+    ::-webkit-scrollbar-thumb {
+        background: var(--dr-line);
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: var(--dr-comment); }
+
+    /* ── Accessibility ────────────────────────────────────── */
+    *:focus { outline: none !important; }
+
+    a:focus,
+    button:focus,
+    input:not(.gLFyf):focus,
+    [role="button"]:focus {
+        box-shadow: 0 0 0 2px var(--dr-bg),
+                    0 0 0 4px var(--dr-comment) !important;
+        border-radius: 4px;
+    }
+
+    :focus:not(:focus-visible) {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    @media (forced-colors: active) {
+        .LC20lb { color: LinkText !important; }
+        .iUh30  { color: GrayText !important; }
+    }
+
+    /* ── Responsive ───────────────────────────────────────── */
+    @media (max-width: 768px) {
+        .RNNXgb     { border-radius: 16px; }
+        .kp-wholepage { border-radius: 0; }
     }
 }
