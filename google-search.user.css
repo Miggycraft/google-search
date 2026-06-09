@@ -9,11 +9,7 @@
 @updateURL      https://raw.githubusercontent.com/dracula/google-search/main/google-search.user.css
 @preprocessor   stylus
 ==/UserStyle== */
-
-/* =============================================================================
-   SHARED VARIABLES
-   Declared once here; both @-moz-document blocks inherit these values.
-   ============================================================================= */
+@-moz-document regexp("https?://www\\.google(\\.com?)?(\\.[a-z][a-z])?/(|\\?gws_rd.*|\\?gfe_rd.*|webhp\\?.*)") {
 
 :root {
     /* — Dracula palette — */
@@ -44,12 +40,9 @@
     --t-fast:          0.2s var(--ease-standard);
     --t-med:           0.3s var(--ease-standard);
 }
-
 /* =============================================================================
    GOOGLE MAIN PAGE  (homepage / new-tab)
    ============================================================================= */
-@-moz-document regexp("https?://www\\.google(\\.com?)?(\\.[a-z][a-z])?/(|\\?gws_rd.*|\\?gfe_rd.*|webhp\\?.*)") {
-
     /* ── Base ─────────────────────────────────────────────── */
     body {
         background-color: var(--dr-bg) !important;
@@ -233,6 +226,35 @@
    GOOGLE SEARCH RESULTS PAGE
    ============================================================================= */
 @-moz-document regexp("https?:\\/\\/www\\.google(\\.[a-z]{2,3}){1,2}\\/search\\?.*") {
+:root {
+    /* — Dracula palette — */
+    --dr-bg:           #282a36;
+    --dr-bg2:          #21222c;
+    --dr-line:         #44475a;
+    --dr-selection:    #44475a;
+    --dr-fg:           #f8f8f2;
+    --dr-comment:      #6272a4;
+    --dr-cyan:         #8be9fd;
+    --dr-green:        #50fa7b;
+    --dr-orange:       #ffb86c;
+    --dr-pink:         #ff79c6;
+    --dr-purple:       #bd93f9;
+    --dr-red:          #ff5555;
+    --dr-yellow:       #f1fa8c;
+
+    /* — Semantic tokens — */
+    --link:            #8da8fb;
+    --link-visited:    #697ec0;
+    --link-hover:      #ff79c6;
+    --shadow:          rgba(0, 0, 0, 0.25);
+    --overlay:         rgba(40, 42, 54, 0.85);
+    --highlight:       #4b4f68;
+
+    /* — Transitions — */
+    --ease-standard:   cubic-bezier(0.4, 0, 0.2, 1);
+    --t-fast:          0.2s var(--ease-standard);
+    --t-med:           0.3s var(--ease-standard);
+}
 
     /* ── Base ─────────────────────────────────────────────── */
     body,
@@ -460,7 +482,7 @@
         background: var(--dr-purple) !important;
         border-radius: 28px !important;
     }
-    .sbhl     { background: var(--highlight) !important; }
+    .sbhl, .HxTRcb     { background: var(--highlight) !important; }
     .sbct.PZPZlf.yMAEcf { background: var(--dr-purple) !important; }
 
     /* ── Tab bar ──────────────────────────────────────────── */
@@ -723,4 +745,5 @@
     @media (max-width: 768px) {
         .kp-wholepage { border-radius: 0; }
     }
+
 }
