@@ -459,7 +459,7 @@
     .o3cCx.NMm5M        { color: var(--dr-fg) !important; }
 
     /* ── AI Overview / Gemini ─────────────────────────────── */
-    .RDmXvc, .Zze5V {
+    .RDmXvc, .Zze5V, {
         background-image: linear-gradient(
             transparent 0px,
             var(--dr-bg) 52px,
@@ -482,8 +482,23 @@
         background: var(--dr-purple) !important;
         border-radius: 28px !important;
     }
-    .sbhl, .HxTRcb     { background: var(--highlight) !important; }
+    
+    .LGOjhe b {
+      background: var(--highlight) !important;
+    }
+
+    .sbhl, .HxTRcb,     { background: var(--highlight) !important; }
     .sbct.PZPZlf.yMAEcf { background: var(--dr-purple) !important; }
+        
+    /* AI summary link button*/
+    button.vDOt8c  {
+        background: var(--dr-selection) !important;
+    }
+
+    /* AI card */
+    .MFrAxb  {
+        background-color: var(--dr-selection) !important;
+    }
 
     /* ── Tab bar ──────────────────────────────────────────── */
     .VHFyob .CvDJxb { background-color: var(--dr-bg) !important; }
@@ -505,6 +520,11 @@
     [selected].YmvwI {
         color: var(--dr-purple) !important;
         border-bottom: 3px solid var(--dr-purple) !important;
+    }
+    
+    /* More/Tools dropdown */
+    .vH6rvf {
+        background: var(--dr-selection) !important;
     }
 
     /* ── Image results ────────────────────────────────────── */
@@ -745,5 +765,4 @@
     @media (max-width: 768px) {
         .kp-wholepage { border-radius: 0; }
     }
-
 }
